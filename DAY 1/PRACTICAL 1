@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Nested List Example</title>
+</head>
+
+<body>
+
+    <!-- Ordered Nested List -->
+    <ol>
+        <li>Dance
+            <ol>
+                <li>Hip Hop</li>
+                <li>Classical</li>
+            </ol>
+        </li>
+
+        <li>Music
+            <ol>
+                <li>Pop</li>
+                <li>Jazz</li>
+            </ol>
+        </li>
+    </ol>
+
+    <br>
+
+    <!-- Unordered Nested List -->
+    <ul>
+        <li>Fruits
+            <ul>
+                <li>Apple</li>
+                <li>Mango</li>
+            </ul>
+        </li>
+
+        <li>Vegetables
+            <ul>
+                <li>Potato</li>
+                <li>Tomato</li>
+            </ul>
+        </li>
+    </ul>
+
+</body>
+
+</html>
