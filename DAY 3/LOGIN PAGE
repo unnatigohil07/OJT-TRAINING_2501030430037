@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Nissan GTR Login</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:
+    linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
+    url('https://mir-s3-cdn-cf.behance.net/project_modules/max_3840_webp/695159194331159.65fa6faaaf486.jpg');
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+}
+
+.login-container{
+    width:380px;
+
+    background:rgba(255,255,255,0.12);
+
+    backdrop-filter:blur(14px);
+
+    border:1px solid rgba(255,255,255,0.2);
+
+    padding:40px;
+
+    border-radius:30px;
+
+    color:white;
+
+    box-shadow:0 10px 35px rgba(0,0,0,0.45);
+}
+
+.login-container h1{
+    text-align:center;
+    font-size:34px;
+    margin-bottom:10px;
+
+    font-family:'Orbitron',sans-serif;
+
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+
+    text-shadow:
+    0 0 10px rgba(255,255,255,0.7),
+    0 0 20px rgba(255,255,255,0.3);
+}
+
+.login-container p{
+    text-align:center;
+    margin-bottom:30px;
+    color:#ddd;
+    font-size:16px;
+}
+
+.form-group{
+    margin-bottom:20px;
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+    font-size:15px;
+}
+
+input{
+    width:100%;
+    padding:14px;
+
+    border:none;
+
+    border-radius:18px;
+
+    outline:none;
+
+    background:rgba(255,255,255,0.15);
+
+    color:white;
+
+    font-size:15px;
+}
+
+input::placeholder{
+    color:#ddd;
+}
+
+button{
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:30px;
+
+    background:white;
+
+    color:black;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:0.3s;
+
+    margin-top:10px;
+
+    font-family:'Orbitron',sans-serif;
+}
+
+button:hover{
+    background:#dcdcdc;
+    transform:scale(1.02);
+}
+
+.extra{
+    margin-top:18px;
+    text-align:center;
+    font-size:14px;
+}
+
+.extra a{
+    color:white;
+    text-decoration:none;
+    font-weight:600;
+}
+
+.extra a:hover{
+    color:#ffcc00;
+}
+
+.social-icons{
+    margin-top:25px;
+    display:flex;
+    justify-content:center;
+    gap:18px;
+}
+
+.social-icons a{
+    text-decoration:none;
+    color:white;
+    font-size:24px;
+    transition:0.3s;
+}
+
+.social-icons a:hover{
+    transform:scale(1.2);
+    color:#ffcc00;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="login-container">
+
+    <h1>NISSAN GTR</h1>
+
+    <p>Login To Your Account</p>
+
+    <form>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="Enter your email">
+        </div>
+
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" placeholder="Enter your password">
+        </div>
+
+        <button type="submit">LOGIN</button>
+
+    </form>
+
+    <div class="extra">
+        Don't have an account?
+        <a href="#">Register</a>
+    </div>
+
+    <div class="social-icons">
+
+        <a href="#"><i class="fab fa-instagram"></i></a>
+
+        <a href="#"><i class="fab fa-facebook"></i></a>
+
+        <a href="#"><i class="fab fa-x-twitter"></i></a>
+
+        <a href="#"><i class="fab fa-youtube"></i></a>
+
+    </div>
+
+</div>
+
+</body>
+</html>
