@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GT-R Header Component</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Outfit:wght@200;400;600;800&display=swap');
+
+        :root {
+            --nissan-red: #E22128;
+            --deep-black: #080808;
+            --ui-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            background-color: var(--deep-black);
+            margin: 0;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* HEADER */
+
+        .glass-header {
+            background: rgba(8, 8, 8, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--ui-border);
+            transition: all 0.4s ease;
+        }
+
+        .glass-header.scrolled {
+            padding: 0.3rem 0;
+            background: #000;
+            border-bottom: 1px solid var(--nissan-red);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-link {
+            position: relative;
+            color: #999;
+            transition: color 0.3s ease;
+            letter-spacing: 0.25em;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+
+        .nav-link:hover {
+            color: white;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--nissan-red);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: var(--nissan-red);
+            color: white;
+            padding: 12px 32px;
+            font-weight: 800;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            font-size: 12px;
+            transition: all 0.3s ease;
+            border: 1px solid var(--nissan-red);
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--nissan-red);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .img-crisp {
+            object-fit: contain;
+        }
+
+        /* SLIDER */
+
+        .slider {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+            z-index: 1;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+        }
+
+        .slide-text {
+            position: absolute;
+            bottom: 15%;
+            left: 8%;
+            z-index: 2;
+            color: white;
+        }
+
+        .slide-text h1 {
+            font-size: 80px;
+            margin: 0;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+        }
+
+        .slide-text p {
+            font-size: 20px;
+            letter-spacing: 0.3em;
+            color: #ddd;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Utility Bar -->
+    <div
+        class="bg-black text-[10px] py-2 border-b border-white/10 uppercase tracking-[0.4em] font-bold text-gray-500 relative z-[60]">
+
+        <div class="container mx-auto px-8 flex justify-between items-center">
+
+            <div class="hidden md:block">
+                Performance Heritage Division
+            </div>
+
+            <div class="flex gap-8">
+                <a href="#" class="hover:text-white transition no-underline">Configurator</a>
+
+                <a href="#" class="hover:text-white transition no-underline">Find Dealer</a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Header -->
+
+    <header id="main-header" class="glass-header sticky top-0 z-50 py-5">
+
+        <nav class="container mx-auto px-8 flex items-center justify-between">
+
+            <div class="logo-container">
+
+    <img src="data:image/jpeg;base64,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" 
+         alt="GT-R Logo"
+         class="h-12 w-auto rounded-lg shadow-lg">
+
+</div>
+            <!-- Menu -->
+
+            <ul class="hidden lg:flex items-center gap-12 list-none m-0 p-0">
+
+                <li><a href="#" class="nav-link">Heritage</a></li>
+
+                <li><a href="#" class="nav-link">R32</a></li>
+
+                <li><a href="#" class="nav-link">R34</a></li>
+
+                <li><a href="#" class="nav-link">R35</a></li>
+
+                <li><a href="#" class="nav-link text-red-600">Nismo</a></li>
+
+            </ul>
+
+            <button class="btn-primary">
+                Build Yours
+            </button>
+
+        </nav>
+
+    </header>
+
+    <!-- IMAGE SLIDER -->
+
+    <section class="slider">
+
+        <!-- Slide 1 -->
+        <div class="slide active">
+            <img src="https://s1.cdn.autoevolution.com/images/models/NISSAN_GT-R-2023_main.jpg">
+            <div class="overlay"></div>
+
+            <div class="slide-text">
+                <h1>GT-R 2023</h1>
+                <p>MODERN GODZILLA</p>
+            </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide">
+            <img src="https://s1.cdn.autoevolution.com/images/models/NISSAN_GT-R-2016_main.jpg">
+            <div class="overlay"></div>
+
+            <div class="slide-text">
+                <h1>GT-R 2016</h1>
+                <p>REFINED POWER</p>
+            </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="slide">
+            <img src="https://s1.cdn.autoevolution.com/images/models/NISSAN_GT-R--R35----Facelift-2011_main.jpg">
+            <div class="overlay"></div>
+
+            <div class="slide-text">
+                <h1>R35 FACELIFT</h1>
+                <p>TURBO MONSTER</p>
+            </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="slide">
+            <img src="https://s1.cdn.autoevolution.com/images/models/NISSAN_GT-R-2007_main.jpg">
+            <div class="overlay"></div>
+
+            <div class="slide-text">
+                <h1>GT-R 2007</h1>
+                <p>THE LEGEND RETURNS</p>
+            </div>
+        </div>
+
+        <!-- Slide 5 -->
+        <div class="slide">
+            <img src="https://s1.cdn.autoevolution.com/images/models/NISSAN_Skyline-GT-R--R34--1999_main.jpg">
+            <div class="overlay"></div>
+
+            <div class="slide-text">
+                <h1>R34</h1>
+                <p>STREET ICON</p>
+            </div>
+        </div>
+
+        <!-- Slide 6 -->
+        <div class="slide">
+            <img src="https://s1.cdn.autoevolution.com/images/models/NISSAN_Skyline-GT-R-V-Spec--R34--1999_main.jpg">
+            <div class="overlay"></div>
+
+            <div class="slide-text">
+                <h1>R34 V-SPEC</h1>
+                <p>PURE JAPANESE ENGINEERING</p>
+            </div>
+        </div>
+
+        <!-- Slide 7 -->
+        <div class="slide">
+            <img src="https://s1.cdn.autoevolution.com/images/models/NISSAN_Skyline-GT-R--R33--1995_main.jpg">
+            <div class="overlay"></div>
+
+            <div class="slide-text">
+                <h1>R33</h1>
+                <p>90s MONSTER</p>
+            </div>
+        </div>
+
+    </section>
+
+    <script>
+
+        // HEADER SCROLL EFFECT
+
+        const header = document.getElementById('main-header');
+
+        window.addEventListener('scroll', () => {
+
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            }
+
+            else {
+                header.classList.remove('scrolled');
+            }
+
+        });
+
+        // IMAGE SLIDER
+
+        const slides = document.querySelectorAll('.slide');
+
+        let currentSlide = 0;
+
+        function showSlide(index) {
+
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+
+            slides[index].classList.add('active');
+        }
+
+        setInterval(() => {
+
+            currentSlide++;
+
+            if (currentSlide >= slides.length) {
+                currentSlide = 0;
+            }
+
+            showSlide(currentSlide);
+
+        }, 4000);
+
+    </script>
+
+</body>
+
+</html>
