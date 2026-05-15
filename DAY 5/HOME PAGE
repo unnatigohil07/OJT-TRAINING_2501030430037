@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Nissan GT-R</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:black;
+    color:white;
+    font-family:'Poppins',sans-serif;
+}
+
+.navbar{
+    width:100%;
+    padding:20px 8%;
+    background:rgba(0,0,0,0.85);
+    position:fixed;
+    top:0;
+    z-index:1000;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    color:#E22128;
+    font-size:30px;
+    font-family:'Orbitron',sans-serif;
+}
+
+.nav-links{
+    display:flex;
+    gap:30px;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:white;
+    transition:0.3s;
+}
+
+.nav-links a:hover{
+    color:#E22128;
+}
+
+.hero{
+    height:100vh;
+
+    background:
+    linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
+    url('https://wallpapercave.com/wp/wp8908193.jpg');
+
+    background-size:cover;
+    background-position:center;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+.hero-content h1{
+    font-size:100px;
+    font-family:'Orbitron',sans-serif;
+}
+
+.hero-content p{
+    margin-top:20px;
+    font-size:22px;
+    letter-spacing:5px;
+    color:#ccc;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:30px;
+    padding:15px 40px;
+    background:#E22128;
+    color:white;
+    text-decoration:none;
+    border-radius:10px;
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:white;
+    color:black;
+}
+
+.section{
+    padding:100px 10%;
+    text-align:center;
+}
+
+.section h2{
+    font-size:60px;
+    margin-bottom:30px;
+    font-family:'Orbitron',sans-serif;
+}
+
+.section p{
+    color:#bbb;
+    line-height:2;
+    font-size:20px;
+}
+
+.footer{
+    background:#050505;
+    text-align:center;
+    padding:30px;
+    color:#777;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="navbar">
+
+<div class="logo">NISSAN GT-R</div>
+
+<div class="nav-links">
+
+<a href="index.html">Home</a>
+<a href="models.html">Models</a>
+<a href="gallery.html">Gallery</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+
+</div>
+
+</div>
+
+<div class="hero">
+
+<div class="hero-content">
+
+<h1>NISSAN GT-R</h1>
+
+<p>THE LEGENDARY GODZILLA</p>
+
+<a href="models.html" class="btn">Explore Models</a>
+
+</div>
+
+</div>
+
+<div class="section">
+
+<h2>PURE JAPANESE POWER</h2>
+
+<p>
+The Nissan GT-R is one of the most iconic performance cars ever created.
+Combining aggressive design, twin turbo power and racing DNA,
+the GT-R continues to dominate car culture worldwide.
+</p>
+
+</div>
+
+<div class="footer">
+
+© 2026 Nissan GT-R Website
+
+</div>
+
+</body>
+</html>
