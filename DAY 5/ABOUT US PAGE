@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>About GT-R</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#050505;
+    color:white;
+    font-family:'Poppins',sans-serif;
+}
+
+.navbar{
+    width:100%;
+    padding:20px 8%;
+    background:black;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    color:#E22128;
+    font-size:30px;
+    font-family:'Orbitron',sans-serif;
+}
+
+.nav-links{
+    display:flex;
+    gap:30px;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:white;
+    transition:0.3s;
+}
+
+.nav-links a:hover{
+    color:#E22128;
+}
+
+.hero{
+    height:70vh;
+
+    background:
+    linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
+    url('https://wallpapercave.com/wp/wp8908193.jpg');
+
+    background-size:cover;
+    background-position:center;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.hero h1{
+    font-size:90px;
+    font-family:'Orbitron',sans-serif;
+}
+
+.content{
+    padding:100px 10%;
+}
+
+.content h2{
+    color:#E22128;
+    margin-bottom:20px;
+    font-size:40px;
+}
+
+.content p{
+    color:#ccc;
+    line-height:2;
+    font-size:20px;
+}
+
+.footer{
+    background:black;
+    text-align:center;
+    padding:30px;
+    color:#777;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="navbar">
+
+<div class="logo">NISSAN GT-R</div>
+
+<div class="nav-links">
+
+<a href="index.html">Home</a>
+<a href="models.html">Models</a>
+<a href="gallery.html">Gallery</a>
+<a href="about us.html">About</a>
+<a href="contact.html">Contact</a>
+
+</div>
+
+</div>
+
+<div class="hero">
+
+<h1>ABOUT US</h1>
+
+</div>
+
+<div class="content">
+
+<h2>Performance & Engineering</h2>
+
+<p>
+The GT-R is famous for its advanced engineering and incredible speed.
+It features powerful twin turbo engines, intelligent all wheel drive systems and aerodynamic body design.
+The combination of power and control makes the GT-R one of the most respected performance cars in the world.
+</p>
+
+<br><br>
+
+<h2>Global Car Culture Icon</h2>
+
+<p>
+The Nissan GT-R became a global icon through racing, car meets and movies.
+It gained massive popularity among car enthusiasts because of its aggressive look and legendary performance.
+From street racing culture to professional motorsports, the GT-R continues to dominate attention everywhere.
+</p>
+
+<br><br>
+
+<h2>Future of GT-R</h2>
+
+<p>
+Even after decades, the GT-R legacy continues to inspire the automotive world.
+New technologies, modern performance upgrades and evolving designs keep the GT-R name alive for future generations.
+The spirit of Godzilla still represents speed, precision and power.
+</p>
+<div class="footer">
+
+© 2026 Nissan GT-R Website
+
+</div>
+
+</body>
+</html>
