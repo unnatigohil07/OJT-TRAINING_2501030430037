@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Contact Us - Nissan GT-R</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Poppins:wght@300;400;500;600&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    font-family:'Poppins', sans-serif;
+
+    background:
+    linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)),
+    url('https://mir-s3-cdn-cf.behance.net/project_modules/max_3840_webp/695159194331159.65fa6faaaf486.jpg');
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:30px;
+}
+
+.contact-box{
+    width:100%;
+    max-width:700px;
+
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(12px);
+
+    border:1px solid rgba(255,255,255,0.15);
+
+    border-radius:25px;
+
+    padding:45px;
+
+    box-shadow:0 15px 40px rgba(0,0,0,0.5);
+
+    color:white;
+}
+
+.contact-box h1{
+    text-align:center;
+    font-size:45px;
+    margin-bottom:10px;
+    font-family:'Orbitron', sans-serif;
+    letter-spacing:3px;
+}
+
+.contact-box p{
+    text-align:center;
+    color:#dcdcdc;
+    margin-bottom:40px;
+    font-size:15px;
+}
+
+.contact-info{
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+}
+
+.info-card{
+    display:flex;
+    align-items:center;
+    gap:20px;
+
+    background:rgba(255,255,255,0.08);
+
+    padding:22px;
+
+    border-radius:18px;
+
+    transition:0.3s;
+}
+
+.info-card:hover{
+    transform:translateY(-5px);
+    background:rgba(255,255,255,0.12);
+}
+
+.info-card i{
+    width:60px;
+    height:60px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    border-radius:50%;
+
+    background:#e60012;
+
+    font-size:24px;
+}
+
+.info-text h3{
+    font-size:20px;
+    margin-bottom:5px;
+}
+
+.info-text a{
+    color:#ddd;
+    text-decoration:none;
+    font-size:15px;
+    word-break:break-word;
+}
+
+.info-text a:hover{
+    color:#fff;
+}
+
+.social-section{
+    margin-top:40px;
+    text-align:center;
+}
+
+.social-section h2{
+    margin-bottom:25px;
+    font-size:28px;
+    font-family:'Orbitron', sans-serif;
+}
+
+.social-icons{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.social-icons a{
+    width:65px;
+    height:65px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,0.1);
+
+    color:white;
+
+    font-size:28px;
+
+    transition:0.3s;
+}
+
+.social-icons a:hover{
+    background:#e60012;
+    transform:scale(1.15);
+}
+
+.back-btn{
+    display:block;
+    width:220px;
+
+    margin:40px auto 0;
+
+    text-align:center;
+
+    padding:14px;
+
+    border-radius:40px;
+
+    text-decoration:none;
+
+    background:#e60012;
+
+    color:white;
+
+    font-weight:600;
+
+    transition:0.3s;
+}
+
+.back-btn:hover{
+    background:white;
+    color:black;
+}
+
+@media(max-width:700px){
+
+    .contact-box{
+        padding:25px;
+    }
+
+    .contact-box h1{
+        font-size:32px;
+    }
+
+    .info-card{
+        flex-direction:column;
+        text-align:center;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="contact-box">
+
+    <h1>CONTACT US</h1>
+
+    <p>Connect with Nissan GT-R World Anytime</p>
+
+    <div class="contact-info">
+
+        <div class="info-card">
+
+            <i class="fas fa-envelope"></i>
+
+            <div class="info-text">
+                <h3>Email</h3>
+
+                <a href="mailto:gohilunnati071@gmail.com">
+                    gohilunnati071@gmail.com
+                </a>
+            </div>
+
+        </div>
+
+        <div class="info-card">
+
+            <i class="fas fa-phone"></i>
+
+            <div class="info-text">
+                <h3>Phone Number</h3>
+
+                <a href="tel:9725205834">
+                    +91 9725205834
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="social-section">
+
+        <h2>FOLLOW US</h2>
+
+        <div class="social-icons">
+
+            <a href="https://instagram.com" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+
+            <a href="https://facebook.com" target="_blank">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+
+            <a href="https://wa.me/919725205834" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+
+            <a href="https://twitter.com" target="_blank">
+                <i class="fab fa-x-twitter"></i>
+            </a>
+
+            <a href="https://youtube.com" target="_blank">
+                <i class="fab fa-youtube"></i>
+            </a>
+
+        </div>
+
+    </div>
+
+    <a href="index.html" class="back-btn">
+        BACK TO HOME
+    </a>
+
+</div>
+
+</body>
+</html>
