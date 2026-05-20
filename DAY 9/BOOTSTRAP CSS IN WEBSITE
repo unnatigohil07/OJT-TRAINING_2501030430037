@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GT-R Performance Hub</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Outfit:wght@200;400;600;800&display=swap');
+
+        :root {
+            --nissan-red: #E22128;
+            --ui-border: rgba(255, 255, 255, 0.1);
+            --neon-glow: rgba(226, 33, 40, 0.3);
+        }
+
+        body {
+            background-color: #080808;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .font-sync {
+            font-family: 'Syncopate', sans-serif;
+        }
+        .glass-header {
+            background: rgba(8, 8, 8, 0.85);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--ui-border);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .glass-header.scrolled {
+            padding: 0.4rem 0 !important;
+            background: rgba(0, 0, 0, 0.95);
+            border-bottom: 2px solid var(--nissan-red);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+        }
+
+        .nav-link-gtr {
+            position: relative;
+            letter-spacing: 0.25em;
+        }
+
+        .nav-link-gtr::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 10%;
+            width: 0;
+            height: 2px;
+            background-color: var(--nissan-red);
+            transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .nav-link-gtr:hover::after, .nav-link-gtr.active::after {
+            width: 80%;
+        }
+
+        .btn-gtr-primary {
+            background: var(--nissan-red);
+            border: 1px solid var(--nissan-red);
+            letter-spacing: 0.2em;
+            transition: all 0.3s ease;
+        }
+
+        .btn-gtr-primary:hover {
+            background: transparent;
+            color: var(--nissan-red) !important;
+            box-shadow: 0 0 15px var(--neon-glow);
+        }
+
+        .btn-gtr-outline {
+            border: 1px solid var(--ui-border);
+            letter-spacing: 0.2em;
+            transition: all 0.3s ease;
+        }
+
+        .btn-gtr-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #ffffff;
+        }
+
+        .carousel-item {
+            height: 85vh;
+            min-height: 500px;
+        }
+
+        .carousel-item img {
+            object-fit: cover;
+            transition: transform 6s ease;
+        }
+
+        .carousel-item.active img {
+            transform: scale(1.05);
+        }
+
+        .carousel-overlay {
+            background: linear-gradient(to top, rgba(8, 8, 8, 1) 5%, rgba(8, 8, 8, 0.3) 50%, rgba(8, 8, 8, 0.7) 100%);
+        }
+
+        .carousel-caption-custom p {
+            letter-spacing: 0.3em;
+            border-left: 3px solid var(--nissan-red);
+        }
+
+        .carousel-indicators .active {
+            background-color: var(--nissan-red) !important;
+            box-shadow: 0 0 10px var(--nissan-red);
+        }
+
+        .spec-table-container {
+            border: 1px solid var(--ui-border);
+            transition: all 0.3s ease;
+        }
+
+        .spec-table-container:hover {
+            border-color: rgba(226, 33, 40, 0.35);
+            box-shadow: 0 25px 60px rgba(226, 33, 40, 0.1);
+        }
+
+        .table-gtr th {
+            letter-spacing: 0.15em;
+        }
+
+        .table-gtr tbody tr:hover td {
+            background-color: rgba(255, 255, 255, 0.03) !important;
+            color: #ffffff !important;
+        }
+
+        .filter-btn {
+            border: 1px solid var(--ui-border);
+            letter-spacing: 0.15em;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--nissan-red);
+            border-color: var(--nissan-red);
+            box-shadow: 0 0 15px var(--neon-glow);
+        }
+
+        .search-input:focus {
+            border-color: var(--nissan-red);
+            box-shadow: 0 0 15px var(--neon-glow);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="bg-black py-2 border-bottom border-secondary border-opacity-10 text-uppercase d-none d-md-block position-relative" style="font-size: 10px; font-weight: 700; color: #666; letter-spacing: 0.3em; z-index: 1050;">
+        <div class="container-fluid px-5 d-flex justify-content-between align-items-center">
+            <div>
+                <i class="fa-solid fa-triangle-exclamation text-danger me-2"></i>Performance Heritage Division
+            </div>
+            <div class="d-flex gap-4">
+                <a href="#" class="text-secondary text-decoration-none link-light transition"><i class="fa-solid fa-sliders me-1"></i> Configurator</a>
+                <a href="#" class="text-secondary text-decoration-none link-light transition"><i class="fa-solid fa-map-pin me-1"></i> Find Dealer</a>
+            </div>
+        </div>
+    </div>
+
+    
+    <header id="main-header" class="glass-header sticky-top w-100 py-3">
+        <nav class="navbar navbar-expand-lg navbar-dark p-0">
+            <div class="container-fluid px-5 d-flex align-items-center justify-content-between">
+                
+                <a class="navbar-brand d-flex align-items-center m-0" href="#">
+                    <img src="https://img.freepik.com/premium-photo/black-background-with-letters-t-t-it_783884-226715.jpg?semt=ais_hybrid&w=740&q=80" 
+                         alt="GT-R Badge" class="img-fluid rounded border border-secondary bg-black bg-opacity-50 p-1" style="height: 100px;">
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#gtrNavbar" aria-controls="gtrNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-lg-center" id="gtrNavbar">
+                    <ul class="navbar-nav mx-auto mb-3 mb-lg-0 gap-3">
+                        <li class="nav-item">
+                            <a class="nav-link-gtr text-uppercase small fw-bold text-decoration-none px-3 py-2 d-inline-block text-white active" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link-gtr text-uppercase small fw-bold text-decoration-none px-3 py-2 d-inline-block text-secondary link-light" href="about us.html">Specs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link-gtr text-uppercase small fw-bold text-decoration-none px-3 py-2 d-inline-block text-secondary link-light" href="gallery.html">Gallery</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link-gtr text-uppercase small fw-bold text-decoration-none px-3 py-2 d-inline-block text-secondary link-light" href="contact.html">Contact</a>
+                        </li>
+                    </ul>
+                    
+                    <div class="d-flex flex-column flex-lg-row gap-3">
+                        <a href="login.html" class="btn-gtr-outline text-white px-4 py-2 fw-bold text-uppercase text-center text-decoration-none rounded-1" style="font-size: 11px;">Login</a>
+                        <a href="RegistrationForm_U.html" class="btn-gtr-primary text-white px-4 py-2 fw-bolder text-uppercase text-center text-decoration-none rounded-1 d-inline-flex align-items-center justify-content-center" style="font-size: 11px;">Register</a>
+                    </div>
+                </div>
+
+            </div>
+        </nav>
+    </header>
+
+ 
+    <section id="heroCarousel" class="carousel slide carousel-fade bg-black" data-bs-ride="carousel" data-bs-interval="4000">
+        <div class="carousel-indicators mb-3">
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active rounded-circle style-indicator" aria-current="true" aria-label="Slide 1" style="width: 12px; height: 12px;"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" class="rounded-circle" aria-label="Slide 2" style="width: 12px; height: 12px;"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" class="rounded-circle" aria-label="Slide 3" style="width: 12px; height: 12px;"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="3" class="rounded-circle" aria-label="Slide 4" style="width: 12px; height: 12px;"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="4" class="rounded-circle" aria-label="Slide 5" style="width: 12px; height: 12px;"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="5" class="rounded-circle" aria-label="Slide 6" style="width: 12px; height: 12px;"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="6" class="rounded-circle" aria-label="Slide 7" style="width: 12px; height: 12px;"></button>
+        </div>
+
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://s1.cdn.autoevolution.com/images/models/NISSAN_GT-R-2023_main.jpg" alt="Nissan GT-R 2023" class="w-100 h-100 opacity-75">
+                <div class="carousel-overlay position-absolute start-0 top-0 w-100 h-100"></div>
+                <div class="carousel-caption-custom position-absolute bottom-0 start-0 text-start px-5 pb-5 mb-4">
+                    <h1 class="font-sync text-white fw-black text-uppercase mb-1 display-3" style="text-shadow: 0 4px 10px rgba(0, 0, 0, 0.9);">GT-R 2023</h1>
+                    <p class="text-light text-uppercase fw-semibold ps-3 fs-6">Modern Godzilla</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://s1.cdn.autoevolution.com/images/models/NISSAN_GT-R-2016_main.jpg" alt="Nissan GT-R 2016" class="w-100 h-100 opacity-75">
+                <div class="carousel-overlay position-absolute start-0 top-0 w-100 h-100"></div>
+                <div class="carousel-caption-custom position-absolute bottom-0 start-0 text-start px-5 pb-5 mb-4">
+                    <h1 class="font-sync text-white fw-black text-uppercase mb-1 display-3" style="text-shadow: 0 4px 10px rgba(0, 0, 0, 0.9);">GT-R 2016</h1>
+                    <p class="text-light text-uppercase fw-semibold ps-3 fs-6">Refined Power</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://s1.cdn.autoevolution.com/images/models/NISSAN_GT-R--R35----Facelift-2011_main.jpg" alt="R35 Facelift 2011" class="w-100 h-100 opacity-75">
+                <div class="carousel-overlay position-absolute start-0 top-0 w-100 h-100"></div>
+                <div class="carousel-caption-custom position-absolute bottom-0 start-0 text-start px-5 pb-5 mb-4">
+                    <h1 class="font-sync text-white fw-black text-uppercase mb-1 display-3" style="text-shadow: 0 4px 10px rgba(0, 0, 0, 0.9);">R35 Facelift</h1>
+                    <p class="text-light text-uppercase fw-semibold ps-3 fs-6">Turbo Monster</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://s1.cdn.autoevolution.com/images/models/NISSAN_GT-R-2007_main.jpg" alt="Nissan GT-R 2007" class="w-100 h-100 opacity-75">
+                <div class="carousel-overlay position-absolute start-0 top-0 w-100 h-100"></div>
+                <div class="carousel-caption-custom position-absolute bottom-0 start-0 text-start px-5 pb-5 mb-4">
+                    <h1 class="font-sync text-white fw-black text-uppercase mb-1 display-3" style="text-shadow: 0 4px 10px rgba(0, 0, 0, 0.9);">GT-R 2007</h1>
+                    <p class="text-light text-uppercase fw-semibold ps-3 fs-6">The Legend Returns</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://s1.cdn.autoevolution.com/images/models/NISSAN_Skyline-GT-R--R34--1999_main.jpg" alt="Nissan Skyline GT-R R34" class="w-100 h-100 opacity-75">
+                <div class="carousel-overlay position-absolute start-0 top-0 w-100 h-100"></div>
+                <div class="carousel-caption-custom position-absolute bottom-0 start-0 text-start px-5 pb-5 mb-4">
+                    <h1 class="font-sync text-white fw-black text-uppercase mb-1 display-3" style="text-shadow: 0 4px 10px rgba(0, 0, 0, 0.9);">R34</h1>
+                    <p class="text-light text-uppercase fw-semibold ps-3 fs-6">Street Icon</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://s1.cdn.autoevolution.com/images/models/NISSAN_Skyline-GT-R-V-Spec--R34--1999_main.jpg" alt="Nissan Skyline R34 V-Spec" class="w-100 h-100 opacity-75">
+                <div class="carousel-overlay position-absolute start-0 top-0 w-100 h-100"></div>
+                <div class="carousel-caption-custom position-absolute bottom-0 start-0 text-start px-5 pb-5 mb-4">
+                    <h1 class="font-sync text-white fw-black text-uppercase mb-1 display-3" style="text-shadow: 0 4px 10px rgba(0, 0, 0, 0.9);">R34 V-Spec</h1>
+                    <p class="text-light text-uppercase fw-semibold ps-3 fs-6">Pure Japanese Engineering</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://s1.cdn.autoevolution.com/images/models/NISSAN_Skyline-GT-R--R33--1995_main.jpg" alt="Nissan Skyline GT-R R33" class="w-100 h-100 opacity-75">
+                <div class="carousel-overlay position-absolute start-0 top-0 w-100 h-100"></div>
+                <div class="carousel-caption-custom position-absolute bottom-0 start-0 text-start px-5 pb-5 mb-4">
+                    <h1 class="font-sync text-white fw-black text-uppercase mb-1 display-3" style="text-shadow: 0 4px 10px rgba(0, 0, 0, 0.9);">R33</h1>
+                    <p class="text-light text-uppercase fw-semibold ps-3 fs-6">90s Monster</p>
+                </div>
+            </div>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev" style="z-index: 3;">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next" style="z-index: 3;">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </section>
+
+   
+    <section id="spec-section" class="py-5 position-relative">
+        <div class="container px-4 px-md-5">
+            
+            <div class="row align-items-end mb-5">
+                <div class="col-lg-7 mb-4 mb-lg-0">
+                    <div class="text-danger font-sync text-uppercase mb-2" style="font-size: 11px; letter-spacing: 0.3em;">
+                        Evolution Database
+                    </div>
+                    <h2 class="font-sync text-white text-uppercase" style="font-size: 30px; letter-spacing: 0.05em;">
+                        Nissan GT-R Generation Specs
+                    </h2>
+                    <p class="text-secondary m-0" style="font-size: 15px;">
+                        Quick performance comparison of legendary GT-R lineages. Click on any model to view full mechanical details.
+                    </p>
+                </div>
+                
+                <div class="col-lg-5">
+                    <div class="position-relative">
+                        <i class="fa-solid fa-magnifying-glass position-absolute start-0 top-50 translate-middle-y ms-3 text-secondary"></i>
+                        <input type="text" id="gtrSearch" class="form-control search-input w-100 bg-white bg-opacity-5 text-white border-secondary border-opacity-25 py-2 pe-3" style="padding-left: 42px; font-size: 14px;" placeholder="Search by model or engine...">
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex flex-wrap gap-2 mb-4">
+                <button class="filter-btn active bg-transparent text-secondary border rounded-1 px-3 py-2 text-uppercase fw-bold" style="font-size: 12px;" onclick="filterGeneration(event, 'all')">All Generations</button>
+                <button class="filter-btn bg-transparent text-secondary border rounded-1 px-3 py-2 text-uppercase fw-bold" style="font-size: 12px;" onclick="filterGeneration(event, 'R35')">R35 (V6)</button>
+                <button class="filter-btn bg-transparent text-secondary border rounded-1 px-3 py-2 text-uppercase fw-bold" style="font-size: 12px;" onclick="filterGeneration(event, 'R34')">R34 (RB26)</button>
+                <button class="filter-btn bg-transparent text-secondary border rounded-1 px-3 py-2 text-uppercase fw-bold" style="font-size: 12px;" onclick="filterGeneration(event, 'R33')">R33 (RB26)</button>
+            </div>
+
+            <div class="spec-table-container bg-dark bg-opacity-25 rounded-3 p-4 shadow-lg">
+                <div class="table-responsive">
+                    <table class="table table-gtr table-dark m-0 text-light align-middle" id="gtrSpecTable">
+                        <thead>
+                            <tr class="border-bottom border-secondary border-opacity-25">
+                                <th scope="col" class="font-sync text-secondary text-uppercase py-3 px-4" style="font-size: 11px;">Generation</th>
+                                <th scope="col" class="font-sync text-secondary text-uppercase py-3 px-4" style="font-size: 11px;">Model Year</th>
+                                <th scope="col" class="font-sync text-secondary text-uppercase py-3 px-4" style="font-size: 11px;">Engine Type</th>
+                                <th scope="col" class="font-sync text-secondary text-uppercase py-3 px-4" style="font-size: 11px;">Horsepower</th>
+                                <th scope="col" class="font-sync text-secondary text-uppercase py-3 px-4" style="font-size: 11px;">0-60 mph (0-100 km/h)</th>
+                                <th scope="col" class="font-sync text-secondary text-uppercase py-3 px-4" style="font-size: 11px;">Top Speed</th>
+                            </tr>
+                        </thead>
+                        <tbody class="border-0">
+                            <tr class="pointer-event" style="cursor: pointer;" data-gen="R35" onclick="showSpecDetails('GT-R 2023', 'VR38DETT Twin-Turbo V6', '565 hp @ 6800 RPM', '2.9 seconds', '196 mph (315 km/h)', '6-speed Dual-Clutch Sequential', '3,935 lbs (1,785 kg)', 'Advanced ATTESA E-TS AWD')">
+                                <td class="py-3 px-4"><span class="badge border border-danger border-opacity-25 bg-danger bg-opacity-15 text-danger fw-bold rounded-1 text-uppercase p-2" style="font-size: 11px; letter-spacing: 0.1em;">R35</span></td>
+                                <td class="fw-bold text-white py-3 px-4">GT-R 2023</td>
+                                <td class="py-3 px-4 text-secondary">3.8L VR38DETT V6</td>
+                                <td class="text-danger fw-semibold py-3 px-4">565 HP</td>
+                                <td class="py-3 px-4 text-secondary">2.9s</td>
+                                <td class="py-3 px-4 text-secondary">196 mph</td>
+                            </tr>
+                            <tr class="pointer-event" style="cursor: pointer;" data-gen="R35" onclick="showSpecDetails('GT-R 2016', 'VR38DETT Twin-Turbo V6', '545 hp @ 6400 RPM', '3.0 seconds', '196 mph (315 km/h)', '6-speed Dual-Clutch Sequential', '3,829 lbs (1,737 kg)', 'ATTESA E-TS AWD')">
+                                <td class="py-3 px-4"><span class="badge border border-danger border-opacity-25 bg-danger bg-opacity-15 text-danger fw-bold rounded-1 text-uppercase p-2" style="font-size: 11px; letter-spacing: 0.1em;">R35</span></td>
+                                <td class="fw-bold text-white py-3 px-4">GT-R 2016</td>
+                                <td class="py-3 px-4 text-secondary">3.8L VR38DETT V6</td>
+                                <td class="text-danger fw-semibold py-3 px-4">545 HP</td>
+                                <td class="py-3 px-4 text-secondary">3.0s</td>
+                                <td class="py-3 px-4 text-secondary">196 mph</td>
+                            </tr>
+                            <tr class="pointer-event" style="cursor: pointer;" data-gen="R35" onclick="showSpecDetails('GT-R R35 Facelift (2011)', 'VR38DETT Twin-Turbo V6', '530 hp @ 6400 RPM', '3.2 seconds', '195 mph (313 km/h)', '6-speed Dual-Clutch Sequential', '3,825 lbs (1,735 kg)', 'ATTESA E-TS AWD')">
+                                <td class="py-3 px-4"><span class="badge border border-danger border-opacity-25 bg-danger bg-opacity-15 text-danger fw-bold rounded-1 text-uppercase p-2" style="font-size: 11px; letter-spacing: 0.1em;">R35</span></td>
+                                <td class="fw-bold text-white py-3 px-4">R35 Facelift 2011</td>
+                                <td class="py-3 px-4 text-secondary">3.8L VR38DETT V6</td>
+                                <td class="text-danger fw-semibold py-3 px-4">530 HP</td>
+                                <td class="py-3 px-4 text-secondary">3.2s</td>
+                                <td class="py-3 px-4 text-secondary">195 mph</td>
+                            </tr>
+                            <tr class="pointer-event" style="cursor: pointer;" data-gen="R35" onclick="showSpecDetails('GT-R 2007', 'VR38DETT Twin-Turbo V6', '480 hp @ 6400 RPM', '3.5 seconds', '193 mph (311 km/h)', '6-speed Dual-Clutch Sequential', '3,836 lbs (1,740 kg)', 'ATTESA E-TS AWD')">
+                                <td class="py-3 px-4"><span class="badge border border-danger border-opacity-25 bg-danger bg-opacity-15 text-danger fw-bold rounded-1 text-uppercase p-2" style="font-size: 11px; letter-spacing: 0.1em;">R35</span></td>
+                                <td class="fw-bold text-white py-3 px-4">GT-R 2007</td>
+                                <td class="py-3 px-4 text-secondary">3.8L VR38DETT V6</td>
+                                <td class="text-danger fw-semibold py-3 px-4">480 HP</td>
+                                <td class="py-3 px-4 text-secondary">3.5s</td>
+                                <td class="py-3 px-4 text-secondary">193 mph</td>
+                            </tr>
+                            <tr class="pointer-event" style="cursor: pointer;" data-gen="R34" onclick="showSpecDetails('Skyline GT-R R34', 'RB26DETT Twin-Turbo Inline-6', '276 hp @ 6800 RPM (Official Japanese limit, realistically ~330 hp)', '4.9 seconds', '155 mph (250 km/h)', '6-Speed Getrag Manual', '3,439 lbs (1,560 kg)', 'ATTESA E-TS Pro AWD')">
+                                <td class="py-3 px-4"><span class="badge border border-info border-opacity-25 bg-info bg-opacity-15 text-info fw-bold rounded-1 text-uppercase p-2" style="font-size: 11px; letter-spacing: 0.1em;">R34</span></td>
+                                <td class="fw-bold text-white py-3 px-4">Skyline R34 (1999)</td>
+                                <td class="py-3 px-4 text-secondary">2.6L RB26DETT I6</td>
+                                <td class="text-info fw-semibold py-3 px-4">276 HP</td>
+                                <td class="py-3 px-4 text-secondary">4.9s</td>
+                                <td class="py-3 px-4 text-secondary">155 mph</td>
+                            </tr>
+                            <tr class="pointer-event" style="cursor: pointer;" data-gen="R34" onclick="showSpecDetails('Skyline GT-R R34 V-Spec', 'RB26DETT Twin-Turbo Inline-6 (Upgraded cooling and active LSD)', '276 hp @ 6800 RPM (Official, actually ~340 hp)', '4.7 seconds', '155 mph (250 km/h)', '6-Speed Getrag Manual', '3,439 lbs (1,560 kg)', 'ATTESA E-TS Pro AWD with Active Rear LSD')">
+                                <td class="py-3 px-4"><span class="badge border border-info border-opacity-25 bg-info bg-opacity-15 text-info fw-bold rounded-1 text-uppercase p-2" style="font-size: 11px; letter-spacing: 0.1em;">R34</span></td>
+                                <td class="fw-bold text-white py-3 px-4">R34 V-Spec (1999)</td>
+                                <td class="py-3 px-4 text-secondary">2.6L RB26DETT I6</td>
+                                <td class="text-info fw-semibold py-3 px-4">276 HP</td>
+                                <td class="py-3 px-4 text-secondary">4.7s</td>
+                                <td class="py-3 px-4 text-secondary">155 mph</td>
+                            </tr>
+                            <tr class="pointer-event" style="cursor: pointer;" data-gen="R33" onclick="showSpecDetails('Skyline GT-R R33', 'RB26DETT Twin-Turbo Inline-6', '276 hp @ 6800 RPM', '5.2 seconds', '155 mph (250 km/h)', '5-Speed Manual', '3,373 lbs (1,530 kg)', 'ATTESA E-TS AWD')">
+                                <td class="py-3 px-4"><span class="badge border border-warning border-opacity-25 bg-warning bg-opacity-15 text-warning fw-bold rounded-1 text-uppercase p-2" style="font-size: 11px; letter-spacing: 0.1em;">R33</span></td>
+                                <td class="fw-bold text-white py-3 px-4">Skyline R33 (1995)</td>
+                                <td class="py-3 px-4 text-secondary">2.6L RB26DETT I6</td>
+                                <td class="text-warning fw-semibold py-3 px-4">276 HP</td>
+                                <td class="py-3 px-4 text-secondary">5.2s</td>
+                                <td class="py-3 px-4 text-secondary">155 mph</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+   
+    <div class="modal fade" id="specDetailModal" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark border border-2 border-danger rounded-3 text-white">
+                <div class="modal-header border-secondary border-opacity-25">
+                    <h5 class="modal-title font-sync text-uppercase text-white" id="modalTitle">GT-R Model Specs</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table table-borderless table-dark m-0" style="font-size: 14px;">
+                            <tbody>
+                                <tr>
+                                    <td class="text-secondary ps-0 w-50">Engine Layout</td>
+                                    <td class="text-white fw-bold" id="modalEngine">-</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-secondary ps-0">Power Output</td>
+                                    <td class="text-danger fw-bold" id="modalPower">-</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-secondary ps-0">Drivetrain System</td>
+                                    <td class="text-white" id="modalDrivetrain">-</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-secondary ps-0">Transmission</td>
+                                    <td class="text-white" id="modalTransmission">-</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-secondary ps-0">Acceleration</td>
+                                    <td class="text-white fw-semibold" id="modalAccel">-</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-secondary ps-0">Top Speed</td>
+                                    <td class="text-white" id="modalTopSpeed">-</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-secondary ps-0">Curb Weight</td>
+                                    <td class="text-secondary" id="modalWeight">-</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        let currentGenerationFilter = 'all';
+
+        function processTableFilters() {
+            const searchQuery = document.getElementById('gtrSearch').value.toLowerCase();
+            const rows = document.querySelectorAll('#gtrSpecTable tbody tr');
+
+            rows.forEach(row => {
+                const generationMatch = (currentGenerationFilter === 'all' || row.getAttribute('data-gen') === currentGenerationFilter);
+                const textContent = row.textContent.toLowerCase();
+                const searchMatch = textContent.includes(searchQuery);
+
+                if (generationMatch && searchMatch) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        function filterGeneration(event, gen) {
+            currentGenerationFilter = gen;
+            
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+            
+            processTableFilters();
+        }
+
+        document.getElementById('gtrSearch').addEventListener('input', processTableFilters);
+
+        let specModalElement;
+        document.addEventListener("DOMContentLoaded", function() {
+            specModalElement = new bootstrap.Modal(document.getElementById('specDetailModal'));
+        });
+
+        function showSpecDetails(title, engine, power, accel, speed, transmission, weight, drivetrain) {
+            document.getElementById('modalTitle').textContent = title + " Profile Specifications";
+            document.getElementById('modalEngine').textContent = engine;
+            document.getElementById('modalPower').textContent = power;
+            document.getElementById('modalAccel').textContent = accel;
+            document.getElementById('modalTopSpeed').textContent = speed;
+            document.getElementById('modalTransmission').textContent = transmission;
+            document.getElementById('modalWeight').textContent = weight;
+            document.getElementById('modalDrivetrain').textContent = drivetrain;
+            
+            if(specModalElement) {
+                specModalElement.show();
+            }
+        }
+    </script>
+</body>
+</html>
