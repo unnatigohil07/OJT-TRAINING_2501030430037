@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery Example</title>
+    <style>
+        .feedback {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>JQUERY EXAMPLE</h1>
+
+    <h2 id="toggle1">=> Space Exploration</h2>
+
+    <p id="first">Space exploration represents humanity's innate drive to discover the unknown and expand our cosmic horizons.
+    <br>Venturing beyond Earth not only satisfies our boundless curiosity but also drives incredible technological innovation.
+    <br>From developing water filtration systems to improving satellite communications, the offshoots of these missions heavily benefit daily life.
+    <br>Moreover, establishing a multi-planetary presence acts as an insurance policy for the long-term survival of our species.
+    <br>As we push forward to the Moon, Mars, and beyond, we edge closer to unlocking the deepest secrets of the universe.
+    </p>
+    <button id="hide1">Hide this text</button>
+    <button id="show1">Show the hidden text</button>
+
+    <p></p>
+     
+    <h2 id="toggle2">=> Northern Lights</h2>
+
+    <p id="second">The Aurora Borealis, or Northern Lights, is a dazzling natural light display primarily seen in high-latitude regions.
+    <br>It occurs when charged particles from the sun collide with Earth's magnetic field and atmospheric gases. 
+    <br>This collision creates vibrant, dancing ribbons of green, pink, and violet light across the night sky. 
+    <br>The most intense and frequent displays typically happen around the magnetic poles during the winter months. 
+    <br>For stargazers in the Northern Hemisphere, clear, dark skies provide the best conditions to witness this spectacular astronomical event.
+    </p>
+    <button id="hide2">Hide this text</button>
+    <button id="show2">Show the hidden text</button>
+
+    <br><br><br>
+    
+    <button id="toggle3">GIVE YOUR FEEDBACK</button>
+    <div class="feedback" id="feedback">
+    <h3>=> How did you find the information?<h3>
+    <button id="yes">IT WAS GOOD</button>
+    <button id="no">COULD BE BETTER</button>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
+    <script>
+    $("#yes").click(function(){
+        alert('Thankyou very much for giving your time and reading this!');
+    })
+
+    $("#no").click(function(){
+        alert('We will try to make it better.. thanks for your feedback!');
+    })
+     
+    $("#hide1").click(function(){
+      $("#first").hide(speed="slow");
+    });
+
+    $("#show1").click(function(){
+      $("#first").show(speed="slow");
+    });
+
+    $("#toggle1").click(function(){
+      $("#first").toggle(speed="slow");
+    });
+
+    $("#hide2").click(function(){
+      $("#second").hide(speed="slow");
+    });
+
+    $("#show2").click(function(){
+      $("#second").show(speed="slow");
+    });
+
+    $("#toggle2").click(function(){
+      $("#second").toggle(speed="slow");
+    });
+
+    $("#toggle3").click(function(){
+      $("#feedback").toggle(speed="slow");
+    });
+
+    </script>
+</body>
+</html>
