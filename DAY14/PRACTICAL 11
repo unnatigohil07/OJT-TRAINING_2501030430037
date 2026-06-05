@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Zebra Stripes table</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+
+    <h2>Zebra Striped Table</h2>
+
+    <table border="1" cellpadding="10" cellspacing="0" style="width:50%; font-family:Arial;">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Category</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Laptop</td>
+                <td>Electronics</td>
+                <td>$999</td>
+            </tr>
+            <tr>
+                <td>Smartphone</td>
+                <td>Electronics</td>
+                <td>$699</td>
+            </tr>
+            <tr>
+                <td>Desk Chair</td>
+                <td>Furniture</td>
+                <td>$150</td>
+            </tr>
+            <tr>
+                <td>Coffee Maker</td>
+                <td>Appliances</td>
+                <td>$80</td>
+            </tr>
+            <tr>
+                <td>Running Shoes</td>
+                <td>Apparel</td>
+                <td>$120</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        $(document).ready(function() {
+            $('table thead tr').css({
+                'background-color': '#333333',
+                'color': '#ffffff'
+            });
+
+            $('table tbody tr:even').css('background-color', '#ffffff');
+            $('table tbody tr:odd').css('background-color', '#e9ecef');
+        });
+    </script>
+
+</body>
+</html>
